@@ -1,0 +1,8 @@
+
+{
+  "name": "EJ TEC - Soluções Digitais",
+  "description": "Uma empresa de tecnologia moderna especializada em criação de sites, sistemas personalizados, tráfego pago e gestão de redes sociais, com recursos de IA para edição de imagens.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
