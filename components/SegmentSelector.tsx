@@ -12,10 +12,10 @@ const SegmentSelector: React.FC<SegmentSelectorProps> = ({ isLoggedIn, onLoginRe
   const [selected, setSelected] = useState<SegmentType | null>(null);
 
   const segments = [
-    { type: SegmentType.ACADEMIA, icon: 'fa-dumbbell', desc: 'Gestão de alunos, treinos digitais e biometria.' },
+    { type: SegmentType.ACADEMIA, icon: 'fa-dumbbell', desc: 'Gestão de alunos, treinos digitais e biometria.', exampleUrl: 'https://academia-peach-theta.vercel.app/' },
     { type: SegmentType.FARMACIA, icon: 'fa-pills', desc: 'Estoque inteligente e e-commerce farmacêutico.' },
     { type: SegmentType.HAMBURGUERIA, icon: 'fa-burger', desc: 'Cardápios QR, pedidos e delivery integrado.' },
-    { type: SegmentType.IMOBILIARIA, icon: 'fa-house', desc: 'Portais com tour virtual e CRM avançado.' },
+    { type: SegmentType.IMOBILIARIA, icon: 'fa-house', desc: 'Portais com tour virtual e CRM avançado.', exampleUrl: 'https://imobiliaria-gold.vercel.app/' },
     { type: SegmentType.PETSHOP, icon: 'fa-paw', desc: 'Gestão de banho e tosa, vacinas e agendamento online.' },
     { type: SegmentType.LEILAO, icon: 'fa-gavel', desc: 'Plataforma de lances em tempo real e gestão de arremates.' },
     { type: SegmentType.OUTROS, icon: 'fa-plus', desc: 'Soluções customizadas para seu desafio único.' },
@@ -63,12 +63,27 @@ const SegmentSelector: React.FC<SegmentSelectorProps> = ({ isLoggedIn, onLoginRe
             <p className={`mb-8 font-medium max-w-lg mx-auto ${isDarkBackground ? 'text-slate-100' : 'text-slate-500'}`}>
               {segments.find(s => s.type === selected)?.desc}
             </p>
-            <button
-              onClick={handleRequest}
-              className="btn-success px-12 py-4 text-white rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-lg"
-            >
-              Solicitar Orçamento
-            </button>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+              {segments.find(s => s.type === selected)?.exampleUrl && (
+                <a
+                  href={segments.find(s => s.type === selected)?.exampleUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`px-8 py-4 rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-lg border-2 transition-all ${isDarkBackground
+                      ? 'border-white text-white hover:bg-white hover:text-ej-dark'
+                      : 'border-ej-dark text-ej-dark hover:bg-ej-dark hover:text-white'
+                    }`}
+                >
+                  Ver Exemplo
+                </a>
+              )}
+              <button
+                onClick={handleRequest}
+                className="btn-success px-12 py-4 text-white rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-lg"
+              >
+                Solicitar Orçamento
+              </button>
+            </div>
           </div>
         ) : (
           <div className="space-y-4 opacity-70">
