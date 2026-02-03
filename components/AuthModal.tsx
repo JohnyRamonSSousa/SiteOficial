@@ -18,7 +18,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, onLogin }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+
   const [selectedService, setSelectedService] = useState<ServiceOption>('Web');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,9 +35,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, onLogin }) => {
         alert(`Um link de recuperação foi enviado para ${email}`);
         setView('login');
       } else if (view === 'register') {
-        if (password !== confirmPassword) {
-          throw new Error('As senhas não coincidem!');
-        }
+
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
@@ -49,13 +47,19 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, onLogin }) => {
           }
         });
         if (error) throw error;
-        if (data.user) {
-          alert('Conta criada com sucesso! Verifique seu email para confirmar.');
+
+        if (data.session) {
+          // Auto-login active (Email Confirmation is DISABLED)
+          alert('Conta criada com sucesso!');
           onLogin({
             name: name,
             email: email,
             isLoggedIn: true
           });
+        } else if (data.user) {
+          // Email Confirmation is REQUIRED
+          alert('Conta criada com sucesso! Verifique seu email para confirmar o cadastro antes de entrar.');
+          setView('login');
         }
       } else if (view === 'login') {
         const { data, error } = await supabase.auth.signInWithPassword({
@@ -89,9 +93,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, onLogin }) => {
         </button>
 
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-emerald-50 rounded-2xl mx-auto mb-6 flex items-center justify-center">
-            <i className={`fas ${view === 'forgot-password' ? 'fa-key' : (view === 'register' ? 'fa-user-plus' : 'fa-user-lock')} text-ej-dark text-2xl`}></i>
-          </div>
+          {view !== 'register' && (
+            <div className="w-16 h-16 bg-emerald-50 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+              <i className={`fas ${view === 'forgot-password' ? 'fa-key' : 'fa-user-lock'} text-ej-dark text-2xl`}></i>
+            </div>
+          )}
           <h3 className="text-2xl font-black text-slate-900 uppercase tracking-tight">
             {view === 'login' && <>Área do <span className="text-ej-green">Cliente</span></>}
             {view === 'register' && <>Crie sua <span className="text-ej-green">Conta</span></>}
@@ -182,19 +188,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, onLogin }) => {
                 />
               </div>
 
-              {view === 'register' && (
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1">Confirmar Senha</label>
-                  <input
-                    required
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-100 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition font-medium text-sm text-slate-900"
-                    placeholder="••••••••"
-                  />
-                </div>
-              )}
+
             </>
           )}
 

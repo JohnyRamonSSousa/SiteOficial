@@ -3,12 +3,12 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer id="footer" className="bg-[#095A50] pt-24 pb-12 text-white">
+    <footer id="footer" className="bg-[#245057] pt-24 pb-12 text-white">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-16 mb-20">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-3 mb-8">
-              <img src="/logo-footer-v2.png" alt="EJ TEC" className="w-48 object-contain" />
+            <div className="flex items-center space-x-3 mb-8 -mt-12">
+              <img src="/logo-footer-final.png" alt="InnoviQ Digital" className="w-96 object-contain" />
             </div>
             <p className="text-white max-w-sm mb-8 leading-relaxed font-medium">
               Transformando desafios complexos em soluções digitais simples e lucrativas. Líderes em engenharia de software e marketing de performance.
@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="pt-12 border-t border-white/5 text-center text-white text-xs font-black uppercase tracking-[0.5em]">
-          © 2026 INNOVIQ • ALTA TECNOLOGIA
+          © 2026 INNOVIQ DIGITAL• ALTA TECNOLOGIA
         </div>
       </div>
     </footer>

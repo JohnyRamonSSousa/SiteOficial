@@ -13,6 +13,8 @@ import PricingSection from './components/PricingSection';
 import Footer from './components/Footer';
 import AuthModal from './components/AuthModal';
 import Dashboard from './components/Dashboard';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
+import ScrollToTop from './components/ScrollToTop';
 
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -29,6 +31,7 @@ const App: React.FC = () => {
           email: session.user.email || '',
           isLoggedIn: true
         });
+        setView('dashboard');
       }
     });
 
@@ -42,8 +45,12 @@ const App: React.FC = () => {
           email: session.user.email || '',
           isLoggedIn: true
         });
+        if (_event === 'SIGNED_IN') {
+          setView('dashboard');
+        }
       } else {
         setUser(null);
+        setView('landing');
       }
     });
 
@@ -156,6 +163,9 @@ const App: React.FC = () => {
       </main>
 
       <Footer />
+
+      <FloatingWhatsApp />
+      <ScrollToTop />
 
       {showAuthModal && (
         <AuthModal

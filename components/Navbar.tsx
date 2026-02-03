@@ -45,9 +45,9 @@ const Navbar: React.FC<NavbarProps> = ({ user, onLoginClick, onLogout }) => {
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-[60] bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-sm transition-all duration-300">
-        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="container mx-auto px-6 h-24 flex items-center justify-between lg:justify-center lg:gap-56">
           <a href="#" className="flex items-center space-x-1 group relative z-[70]">
-            <img src="/logo-full.png" alt="EJ TEC" className="w-36 h-36 object-contain" />
+            <img src="/logo-nav-final.png" alt="InnoviQ Digital" className="h-20 w-auto object-contain" />
           </a>
 
           {/* Desktop Links */}
