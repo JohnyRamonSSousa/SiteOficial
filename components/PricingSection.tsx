@@ -57,7 +57,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) => {
                 <span className="text-5xl font-black text-slate-900">{plan.price}</span>
                 <span className="text-slate-400 text-xs font-bold uppercase">/{plan.period}</span>
               </div>
-              
+
               <ul className="space-y-4 mb-10 flex-grow">
                 {plan.features.map((feature, fIdx) => (
                   <li key={fIdx} className="flex items-center space-x-3 text-sm font-medium text-slate-600">
@@ -67,8 +67,13 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) => {
                 ))}
               </ul>
 
-              <button 
-                onClick={onSelectPlan}
+              <button
+                onClick={() => {
+                  const phoneNumber = '5524981755889';
+                  const message = `Olá! Gostaria de contratar o plano ${plan.title}.`;
+                  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                  window.open(whatsappUrl, '_blank');
+                }}
                 className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-ej-green hover:text-slate-900 transition-colors shadow-lg"
               >
                 Contratar Agora

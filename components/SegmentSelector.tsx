@@ -26,7 +26,12 @@ const SegmentSelector: React.FC<SegmentSelectorProps> = ({ isLoggedIn, onLoginRe
       onLoginRequired();
       return;
     }
-    alert(`Solicitação para o segmento ${selected} enviada! Entraremos em contato.`);
+
+    const phoneNumber = '5524981755889';
+    const message = `Olá! Gostaria de solicitar um orçamento para sistemas de ${selected}.`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -70,8 +75,8 @@ const SegmentSelector: React.FC<SegmentSelectorProps> = ({ isLoggedIn, onLoginRe
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`px-8 py-4 rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-lg border-2 transition-all ${isDarkBackground
-                      ? 'border-white text-white hover:bg-white hover:text-ej-dark'
-                      : 'border-ej-dark text-ej-dark hover:bg-ej-dark hover:text-white'
+                    ? 'border-white text-white hover:bg-white hover:text-ej-dark'
+                    : 'border-ej-dark text-ej-dark hover:bg-ej-dark hover:text-white'
                     }`}
                 >
                   Ver Exemplo

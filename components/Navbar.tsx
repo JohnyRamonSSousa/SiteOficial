@@ -11,6 +11,8 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ user, onLoginClick, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
   // Fecha o menu ao redimensionar para desktop
   useEffect(() => {
     const handleResize = () => {
@@ -20,6 +22,15 @@ const Navbar: React.FC<NavbarProps> = ({ user, onLoginClick, onLogout }) => {
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Detecta scroll para mudar background do user
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Previne scroll quando o menu está aberto
@@ -44,7 +55,10 @@ const Navbar: React.FC<NavbarProps> = ({ user, onLoginClick, onLogout }) => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[60] bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-sm transition-all duration-300">
+      <nav className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${isScrolled
+          ? 'bg-white/95 backdrop-blur-xl border-b border-slate-100 shadow-sm'
+          : 'bg-transparent border-transparent'
+        }`}>
         <div className="container mx-auto px-6 h-24 flex items-center justify-between lg:justify-center lg:gap-56">
           <a href="#" className="flex items-center space-x-1 group relative z-[70]">
             <img src="/logo-nav-final.png" alt="InnoviQ Digital" className="h-20 w-auto object-contain" />
