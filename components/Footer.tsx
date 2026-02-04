@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
         <div className="grid md:grid-cols-4 gap-16 mb-20">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-8 -mt-12">
-              <img src="/logo-footer-final.png" alt="InnoviQ Digital" className="w-96 object-contain" />
+              <img src="/logo-innovi.png" alt="InnoviQ Digital" className="w-96 object-contain" />
             </div>
             <p className="text-white max-w-sm mb-8 leading-relaxed font-medium">
               Transformando desafios complexos em soluções digitais simples e lucrativas. Líderes em engenharia de software e marketing de performance.

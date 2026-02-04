@@ -61,7 +61,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, onLoginClick, onLogout }) => {
         }`}>
         <div className="container mx-auto px-6 h-24 flex items-center justify-between lg:justify-center lg:gap-56">
           <a href="#" className="flex items-center space-x-1 group relative z-[70]">
-            <img src="/logo-nav-final.png" alt="InnoviQ Digital" className="h-20 w-auto object-contain" />
+            <img src="/logo-innovi.png" alt="InnoviQ Digital" className="h-20 w-auto object-contain" />
           </a>
 
           {/* Desktop Links */}
